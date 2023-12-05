@@ -22,6 +22,7 @@ public class ItemService {
 
         return itemList.stream()
                 .map(item -> new ItemResponse(
+                        item.getId(),
                         item.getName(),
                         item.getPrice(),
                         item.getImage_url()
