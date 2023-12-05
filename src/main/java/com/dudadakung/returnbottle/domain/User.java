@@ -1,6 +1,6 @@
 package com.dudadakung.returnbottle.domain;
 
-import com.dudadakung.returnbottle.dto.User.UserSignUpRequestDto;
+import com.dudadakung.returnbottle.dto.User.request.UserSignUpRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -50,10 +50,10 @@ public class User {
     public static User createUser(String uniqueId, UserSignUpRequestDto userSignUpRequestDto) {
         User user = User.builder()
                 .uniqueId(uniqueId)
-                .name(userSignUpRequestDto.getName())
-                .email(userSignUpRequestDto.getEmail())
-                .password(userSignUpRequestDto.getPassword())
-                .phoneNumber(userSignUpRequestDto.getPhoneNumber())
+                .name(userSignUpRequestDto.name())
+                .email(userSignUpRequestDto.email())
+                .password(userSignUpRequestDto.password())
+                .phoneNumber(userSignUpRequestDto.phoneNumber())
                 .build();
         return user;
     }

@@ -3,8 +3,9 @@ package com.dudadakung.returnbottle.global;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 
-
+@Getter
 @Builder(access = AccessLevel.PRIVATE)
 public class BaseApiResponse<T> {
     private int statusCode;

@@ -1,6 +1,6 @@
 package com.dudadakung.returnbottle.controller;
 
-import com.dudadakung.returnbottle.dto.User.UserSignUpRequestDto;
+import com.dudadakung.returnbottle.dto.User.request.UserSignUpRequestDto;
 import com.dudadakung.returnbottle.global.BaseApiResponse;
 import com.dudadakung.returnbottle.global.SuccessCode;
 import com.dudadakung.returnbottle.service.UserService;
@@ -20,6 +20,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<BaseApiResponse<?>> signUp(@RequestBody UserSignUpRequestDto userSignUpRequestDto) {
+        userService.saveUser(userSignUpRequestDto);
         return ResponseEntity.status(200).body(BaseApiResponse.of(SuccessCode.CREATED));
     }
 }
