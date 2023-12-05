@@ -5,11 +5,9 @@ import com.dudadakung.returnbottle.global.BaseApiResponse;
 import com.dudadakung.returnbottle.global.SuccessCode;
 import com.dudadakung.returnbottle.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -22,5 +20,11 @@ public class UserController {
     public ResponseEntity<BaseApiResponse<?>> signUp(@RequestBody UserSignUpRequestDto userSignUpRequestDto) {
         userService.saveUser(userSignUpRequestDto);
         return ResponseEntity.status(200).body(BaseApiResponse.of(SuccessCode.CREATED));
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<BaseApiResponse<?>> getMyPage(@RequestParam String uniqueId){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(BaseApiResponse.of(SuccessCode.OK, userService.getMyPage(uniqueId)));
     }
 }

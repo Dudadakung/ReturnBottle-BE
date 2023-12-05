@@ -3,6 +3,7 @@ package com.dudadakung.returnbottle.service;
 import com.dudadakung.returnbottle.domain.User;
 import com.dudadakung.returnbottle.dto.User.request.UserLoginRequestDto;
 import com.dudadakung.returnbottle.dto.User.request.UserSignUpRequestDto;
+import com.dudadakung.returnbottle.dto.User.response.MyPageResponseDto;
 import com.dudadakung.returnbottle.dto.User.response.UserLoginResponseDto;
 import com.dudadakung.returnbottle.error.exception.EntityNotFoundException;
 import com.dudadakung.returnbottle.error.exception.ErrorCode;
@@ -50,6 +51,18 @@ public class UserService {
         }
 
         return sb.toString();
+    }
+
+    public MyPageResponseDto getMyPage(String uniqueId){
+        User user = userRepository.findByUniqueId(uniqueId)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
+        return new MyPageResponseDto(
+                user.getName(),
+                user.getEmail(),
+                user.getNumOfBottles(),
+                user.getMileage(),
+                user.getItems().size()
+        );
     }
 
 }
