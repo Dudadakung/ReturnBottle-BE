@@ -17,7 +17,7 @@ public class UserService {
     final private UserRepository userRepository;
 
 
-    private User saveUser(UserSignUpRequestDto userSignUpRequestDto) {
+    public User saveUser(UserSignUpRequestDto userSignUpRequestDto) {
         String uniqueId = createUniqueId();
         User user = User.createUser(uniqueId, userSignUpRequestDto);
         return userRepository.save(user);
