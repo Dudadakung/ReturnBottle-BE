@@ -28,4 +28,7 @@ public class Reward extends BaseTimeEntity{
 
     @Column(name = "mileage_values", nullable = false)
     private int mileageValues;
+
+    @Column(nullable = false)
+    private int totalMileage;
 }
