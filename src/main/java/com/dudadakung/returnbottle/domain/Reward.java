@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "reward")
-public class Reward {
+public class Reward extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,6 @@ public class Reward {
 
     @Column(nullable = false)
     private String company;
-
-    @CreatedDate
-    @Column(name = "transaction_time", nullable = false)
-    private LocalDateTime transactionTime;
 
     @Column(name = "mileage_values", nullable = false)
     private int mileageValues;
