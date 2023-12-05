@@ -54,7 +54,7 @@ public class UserService {
     }
 
     public MyPageResponseDto getMyPage(String uniqueId){
-        User user = userRepository.findByUniqueId(uniqueId)
+        User user = userRepository.findByUnique_Id(uniqueId)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
         return new MyPageResponseDto(
                 user.getName(),
