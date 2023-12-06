@@ -19,4 +19,6 @@ public class Item {
     private int price;
 
     private String image_url;
+
+    private String description_url;
 }

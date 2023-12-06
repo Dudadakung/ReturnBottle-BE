@@ -38,9 +38,24 @@ public class ItemService {
                         item.getId(),
                         item.getName(),
                         item.getPrice(),
-                        item.getImage_url()
+                        item.getImage_url(),
+                        item.getDescription_url()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public ItemResponse getItem(Long id){
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
+
+        return new ItemResponse(
+                item.getId(),
+                item.getName(),
+                item.getPrice(),
+                item.getImage_url(),
+                item.getDescription_url()
+        );
     }
 
     public ItemBuyResponseDto buyItem(Long id, String uniqueId){
