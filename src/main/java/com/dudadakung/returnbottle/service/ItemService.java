@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -72,7 +73,8 @@ public class ItemService {
             rewardService.saveReward(rewardCreateRequestDto);
         }
 
-        UserItem userItem = UserItem.createUserItem(user, item);
+        Random random = new Random();
+        UserItem userItem = UserItem.createUserItem(user, item, random.nextInt(9) + 1);
         userItemRepository.save(userItem);
 
         return new ItemBuyResponseDto(user.getName(), item.getName(), user.getMileage());

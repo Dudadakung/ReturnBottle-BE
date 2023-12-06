@@ -29,10 +29,14 @@ public class UserItem extends BaseTimeEntity{
     @ColumnDefault("true")
     private boolean isValid;
 
-    public static UserItem createUserItem(User user, Item item) {
+    @Column(name = "d_day", nullable = false)
+    private int dDay;
+
+    public static UserItem createUserItem(User user, Item item, int dDay) {
         return UserItem.builder()
                 .user(user)
                 .item(item)
+                .dDay(dDay)
                 .build();
     }
 }
