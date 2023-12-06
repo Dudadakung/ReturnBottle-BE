@@ -1,6 +1,7 @@
 package com.dudadakung.returnbottle.controller;
 
 import com.dudadakung.returnbottle.dto.Item.request.ItemBuyRequestDto;
+import com.dudadakung.returnbottle.dto.Item.response.ItemBuyResponseDto;
 import com.dudadakung.returnbottle.dto.reward.request.RewardCreateRequestDto;
 import com.dudadakung.returnbottle.global.BaseApiResponse;
 import com.dudadakung.returnbottle.global.SuccessCode;
@@ -25,9 +26,9 @@ public class ItemController {
 
     @PostMapping("/buy")
     public ResponseEntity<BaseApiResponse<?>> buyItem(@RequestBody ItemBuyRequestDto itemBuyRequestDto){
-        itemService.buyItem(itemBuyRequestDto.itemId(), itemBuyRequestDto.uniqueId());
+        ItemBuyResponseDto itemBuyResponseDto = itemService.buyItem(itemBuyRequestDto.itemId(), itemBuyRequestDto.uniqueId());
         return ResponseEntity.status(HttpStatus.OK)
-                .body(BaseApiResponse.of(SuccessCode.OK));
+                .body(BaseApiResponse.of(SuccessCode.OK, itemBuyResponseDto));
     }
 
 }

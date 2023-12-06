@@ -3,6 +3,7 @@ package com.dudadakung.returnbottle.service;
 import com.dudadakung.returnbottle.domain.Item;
 import com.dudadakung.returnbottle.domain.User;
 import com.dudadakung.returnbottle.domain.UserItem;
+import com.dudadakung.returnbottle.dto.Item.response.ItemBuyResponseDto;
 import com.dudadakung.returnbottle.dto.Item.response.ItemResponse;
 import com.dudadakung.returnbottle.dto.reward.request.RewardCreateRequestDto;
 import com.dudadakung.returnbottle.error.exception.EntityNotFoundException;
@@ -42,7 +43,7 @@ public class ItemService {
                 .collect(Collectors.toList());
     }
 
-    public void buyItem(Long id, String uniqueId){
+    public ItemBuyResponseDto buyItem(Long id, String uniqueId){
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
@@ -58,6 +59,8 @@ public class ItemService {
 
         UserItem userItem = UserItem.createUserItem(user, item);
         userItemRepository.save(userItem);
+
+        return new ItemBuyResponseDto(user.getName(), item.getName(), user.getMileage());
     }
 
 }
