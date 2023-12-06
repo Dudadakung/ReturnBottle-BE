@@ -55,7 +55,8 @@ public class UserService {
                 .map(item -> new UserItemResponseDto(
                         item.getItem().getName(),
                         item.getItem().getImage_url(),
-                        item.getItem().getDescription_url()
+                        item.getItem().getDescription_url(),
+                        item.getDDay()
                 ))
                 .collect(Collectors.toList());
     }
