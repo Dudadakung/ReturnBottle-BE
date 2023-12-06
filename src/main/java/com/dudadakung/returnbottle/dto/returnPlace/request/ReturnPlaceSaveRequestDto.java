@@ -7,5 +7,7 @@ public record ReturnPlaceSaveRequestDto(
         String address,
         String hours,
         BigDecimal latitude,
-        BigDecimal longitude) {
+        BigDecimal longitude,
+
+        String possibility) {
 }
