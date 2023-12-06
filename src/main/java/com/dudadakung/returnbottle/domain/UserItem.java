@@ -2,6 +2,7 @@ package com.dudadakung.returnbottle.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -9,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
 @Table(name = "user_item")
-public class UserItem {
+public class UserItem extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,10 @@ public class UserItem {
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
+
+    @Column(name = "is_valid")
+    @ColumnDefault("true")
+    private boolean isValid;
 
     public static UserItem createUserItem(User user, Item item) {
         return UserItem.builder()
