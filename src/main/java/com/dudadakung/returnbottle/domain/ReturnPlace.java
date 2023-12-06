@@ -30,6 +30,8 @@ public class ReturnPlace {
     @Column(precision = 9, scale = 6)
     private BigDecimal longitude;
 
+    private String possibility;
+
     public static ReturnPlace createReturnPlace(ReturnPlaceSaveRequestDto returnPlaceSaveRequestDto) {
         return ReturnPlace.builder()
                 .name(returnPlaceSaveRequestDto.name())
