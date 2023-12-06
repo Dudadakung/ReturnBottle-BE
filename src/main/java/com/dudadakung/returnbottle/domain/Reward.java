@@ -1,16 +1,13 @@
 package com.dudadakung.returnbottle.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-
-import java.time.LocalDateTime;
+import lombok.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 @Table(name = "reward")
 public class Reward extends BaseTimeEntity{
 
@@ -28,4 +25,16 @@ public class Reward extends BaseTimeEntity{
 
     @Column(name = "mileage_values", nullable = false)
     private int mileageValues;
+
+    @Column(nullable = false)
+    private int totalMileage;
+
+    public static Reward createReward(User user, String company, int mileageValues, int totalMileage) {
+        return Reward.builder()
+                .user(user)
+                .company(company)
+                .mileageValues(mileageValues)
+                .totalMileage(totalMileage)
+                .build();
+    }
 }

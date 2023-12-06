@@ -35,4 +35,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(BaseApiResponse.of(SuccessCode.OK, userService.getMyPage(uniqueId)));
     }
+
+    @GetMapping("/item")
+    public ResponseEntity<BaseApiResponse<?>> getItemList(@RequestParam String uniqueId){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(BaseApiResponse.of(SuccessCode.OK, userService.getItemList(uniqueId)));
+    }
 }
