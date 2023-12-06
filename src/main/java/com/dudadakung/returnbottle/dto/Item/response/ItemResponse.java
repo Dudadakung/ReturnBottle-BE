@@ -4,6 +4,7 @@ public record ItemResponse(
         Long id,
         String name,
         int price,
-        String img
+        String img,
+        String description
 ) {
 }

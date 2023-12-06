@@ -24,6 +24,12 @@ public class ItemController {
                 .body(BaseApiResponse.of(SuccessCode.OK, itemService.getItemList()));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BaseApiResponse<?>> getItem(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(BaseApiResponse.of(SuccessCode.OK, itemService.getItem(id)));
+    }
+
     @PostMapping("/buy")
     public ResponseEntity<BaseApiResponse<?>> buyItem(@RequestBody ItemBuyRequestDto itemBuyRequestDto){
         ItemBuyResponseDto itemBuyResponseDto = itemService.buyItem(itemBuyRequestDto.itemId(), itemBuyRequestDto.uniqueId());
