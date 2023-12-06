@@ -51,7 +51,7 @@ public class RewardService {
         User user = userRepository.findByUniqueId(rewardCreateRequestDto.uniqueId())
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
-        Reward reward = Reward.createReward(user, rewardCreateRequestDto.company(), user.getMileage() + rewardCreateRequestDto.mileage());
+        Reward reward = Reward.createReward(user, rewardCreateRequestDto.company(), rewardCreateRequestDto.mileage(), user.getMileage() + rewardCreateRequestDto.mileage());
         user.modifyMileage(rewardCreateRequestDto.mileage());
         rewardRepository.save(reward);
     }

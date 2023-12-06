@@ -29,12 +29,12 @@ public class Reward extends BaseTimeEntity{
     @Column(nullable = false)
     private int totalMileage;
 
-    public static Reward createReward(User user, String company, int mileageValues) {
+    public static Reward createReward(User user, String company, int mileageValues, int totalMileage) {
         return Reward.builder()
                 .user(user)
                 .company(company)
                 .mileageValues(mileageValues)
-                .totalMileage(mileageValues)
+                .totalMileage(totalMileage)
                 .build();
     }
 }
