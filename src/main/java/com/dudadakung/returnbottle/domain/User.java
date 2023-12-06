@@ -57,4 +57,8 @@ public class User {
                 .build();
         return user;
     }
+
+    public void modifyMileage(int mileage) {
+        this.mileage += mileage;
+    }
 }

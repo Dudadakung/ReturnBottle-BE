@@ -2,6 +2,7 @@ package com.dudadakung.returnbottle.service;
 
 import com.dudadakung.returnbottle.domain.Reward;
 import com.dudadakung.returnbottle.domain.User;
+import com.dudadakung.returnbottle.dto.reward.request.RewardCreateRequestDto;
 import com.dudadakung.returnbottle.dto.reward.response.RewardHistoryResponse;
 import com.dudadakung.returnbottle.error.exception.EntityNotFoundException;
 import com.dudadakung.returnbottle.error.exception.ErrorCode;
@@ -44,6 +45,15 @@ public class RewardService {
                 ))
                 .collect(Collectors.toList());
 
+    }
+
+    public void saveReward(RewardCreateRequestDto rewardCreateRequestDto){
+        User user = userRepository.findByUniqueId(rewardCreateRequestDto.uniqueId())
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
+
+        Reward reward = Reward.createReward(user, rewardCreateRequestDto.company(), rewardCreateRequestDto.mileage());
+        user.modifyMileage(rewardCreateRequestDto.mileage());
+        rewardRepository.save(reward);
     }
 
     private String formatDate(LocalDateTime dateTime) {

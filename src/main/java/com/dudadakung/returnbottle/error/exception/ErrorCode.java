@@ -12,6 +12,7 @@ public enum ErrorCode {
      * 400 Bad Request
      */
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
+    MILEAGE_NOT_ENOUGH(HttpStatus.BAD_REQUEST, "마일리지가 부족합니다."),
 
     /**
      * 404 Not Found
